@@ -15,12 +15,11 @@ from typing import Iterable
 
 from .color_util import color, printc
 from .constants import GLOBAL_CFG, IS_WINDOWS
-from .distros import distro_detector
+from .distros import AsciiArt, distro_detector, RE_NEOFETCH_COLOR
 from .presets import ColorProfile
 from .serializer import from_dict
 from .types import BackendLiteral, ColorAlignMode
 
-RE_NEOFETCH_COLOR = re.compile('\\${c[0-9]}')
 SRC = Path(__file__).parent
 
 
@@ -79,24 +78,6 @@ def term_size() -> tuple[int, int]:
         return 100, 20
 
 
-def ascii_size(asc: str) -> tuple[int, int]:
-    """
-    Get distro ascii width, height ignoring color code
-
-    :param asc: Distro ascii
-    :return: Width, Height
-    """
-    return max(len(line) for line in re.sub(RE_NEOFETCH_COLOR, '', asc).split('\n')), len(asc.split('\n'))
-
-
-def normalize_ascii(asc: str) -> str:
-    """
-    Make sure every line are the same width
-    """
-    w = ascii_size(asc)[0]
-    return '\n'.join(line + ' ' * (w - ascii_size(line)[0]) for line in asc.split('\n'))
-
-
 def fill_starting(asc: str) -> str:
     """
     Fill the missing starting placeholders.
@@ -134,13 +115,13 @@ class ColorAlignment:
         ca.custom_colors = {int(k): v for k, v in ca.custom_colors.items()}
         return ca
 
-    def recolor_ascii(self, asc: str, preset: ColorProfile) -> str:
+    def recolor_ascii_art(self, ascii_art: AsciiArt, preset: ColorProfile) -> str:
         """
         Use the color alignment to recolor an ascii art
 
         :return Colored ascii, Uncolored lines
         """
-        asc = fill_starting(asc)
+        asc = fill_starting(ascii_art.normalized_ascii())
 
         if self.fore_back and self.mode in ['horizontal', 'vertical']:
             fore, back = self.fore_back
@@ -263,7 +244,7 @@ def run_neofetch_cmd(args: str, pipe: bool = False) -> str | None:
         subprocess.run(full_cmd)
 
 
-def get_distro_ascii(distro: str | None = None) -> str:
+def get_distro_ascii_art(distro: str | None = None) -> AsciiArt:
     """
     Get the distro ascii of the current distro. Or if distro is specified, get the specific distro's
     ascii art instead.
@@ -277,9 +258,10 @@ def get_distro_ascii(distro: str | None = None) -> str:
         print(GLOBAL_CFG)
 
     # Try new pure-python detection method
-    det = distro_detector.detect(distro or get_distro_name())
+    resolved_distro = distro or get_distro_name()
+    det = distro_detector.detect(resolved_distro)
     if det is not None:
-        return normalize_ascii(det.ascii)
+        return det
 
     if GLOBAL_CFG.debug:
         printc(f"&cError: Cannot find distro {distro}")
@@ -289,12 +271,13 @@ def get_distro_ascii(distro: str | None = None) -> str:
     if distro:
         cmd += f' --ascii_distro {distro}'
 
-    _, asc = run_neofetch_cmd(cmd, True).split('\n', 1)
+    color, asc = run_neofetch_cmd(cmd, True).split('\n', 1)
 
     # Unescape backslashes here because backslashes are escaped in neofetch for printf
     asc = asc.replace('\\\\', '\\')
 
-    return normalize_ascii(asc)
+    # The name and match fields for this AsciiArt are not quite like what we get from distro_detector, so be careful!
+    return AsciiArt.from_neofetch_output(color=color, ascii=asc, distro=resolved_distro)
 
 
 def get_distro_name():
