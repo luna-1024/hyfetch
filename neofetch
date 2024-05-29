@@ -6056,6 +6056,15 @@ strip_sequences() {
 # COLORS
 
 set_colors() {
+    distro_colors=("$@")
+    set_ascii_colors "$@"
+}
+
+override_colors() {
+    set_ascii_colors "$@"
+}
+
+set_ascii_colors() {
     c1="$(color "$1")${ascii_bold}"
     c2="$(color "$2")${ascii_bold}"
     c3="$(color "$3")${ascii_bold}"
@@ -15637,7 +15646,7 @@ EOF
     # equal 'distro'.
     [[ ${ascii_colors[0]} != distro ]] && {
         color_text=off
-        set_colors "${ascii_colors[@]}"
+        override_colors "${ascii_colors[@]}"
     }
 }
 
@@ -15702,12 +15711,13 @@ get_ascii_distro_name() {
     echo "$ascii_distro"
 }
 
-get_print_ascii() {
+get_ascii_art_spec() {
     cache_uname
     get_os
     get_distro
     get_bold
     get_distro_ascii
+    echo "${distro_colors[@]}"
     echo "$ascii_data"
 }
 
