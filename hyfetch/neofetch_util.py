@@ -285,11 +285,11 @@ def get_distro_ascii(distro: str | None = None) -> str:
         printc(f"&cError: Cannot find distro {distro}")
 
     # Old detection method that calls neofetch
-    cmd = 'print_ascii'
+    cmd = 'ascii_art_spec'
     if distro:
         cmd += f' --ascii_distro {distro}'
 
-    asc = run_neofetch_cmd(cmd, True)
+    _, asc = run_neofetch_cmd(cmd, True).split('\n', 1)
 
     # Unescape backslashes here because backslashes are escaped in neofetch for printf
     asc = asc.replace('\\\\', '\\')
