@@ -14,6 +14,7 @@ from . import termenv, neofetch_util, pride_month
 from .color_scale import Scale
 from .color_util import clear_screen
 from .constants import *
+from .distros import AsciiArt
 from .models import Config
 from .neofetch_util import *
 from .presets import PRESETS
@@ -45,8 +46,8 @@ def create_config() -> Config:
     det_bg = termenv.get_background_color()
     det_ansi = termenv.detect_ansi_mode()
 
-    asc = get_distro_ascii()
-    asc_width, asc_lines = ascii_size(asc)
+    art = get_distro_ascii_art()
+    asc_width, asc_lines = art.size()
     logo = color("&l&bhyfetch&~&L" if det_bg is None or det_bg.is_light() else "&l&bhy&ffetch&~&L")
     title = f'Welcome to {logo} Let\'s set up some colors first.'
     clear_screen(title)
@@ -194,8 +195,9 @@ def create_config() -> Config:
         mn, mx = 0.15, 0.85
         ratios = [col / num_cols for col in range(num_cols)]
         ratios = [(r * (mx - mn) / 2 + mn) if is_light else ((r * (mx - mn) + (mx + mn)) / 2) for r in ratios]
-        lines = [ColorAlignment('horizontal').recolor_ascii(TEST_ASCII.replace(
-            '{txt}', f'{r * 100:.0f}%'.center(5)), _prs.set_light_dl(r, light_dark)).split('\n') for r in ratios]
+        lines = [ColorAlignment('horizontal').recolor_ascii_art(
+            AsciiArt.from_ascii_only(TEST_ASCII.replace('{txt}', f'{r * 100:.0f}%'.center(5))),
+            _prs.set_light_dl(r, light_dark)).split('\n') for r in ratios]
         [printc('  '.join(line)) for line in zip(*lines)]
 
         def_lightness = GLOBAL_CFG.default_lightness(light_dark)
@@ -244,7 +246,7 @@ def create_config() -> Config:
 
         # Random color schemes
         pis = list(range(len(_prs.unique_colors().colors)))
-        slots = list(set(map(int, re.findall('(?<=\\${c)[0-9](?=})', asc))))
+        slots = list(art.slots())
         while len(pis) < len(slots):
             pis += pis
         perm = {p[:len(slots)] for p in permutations(pis)}
@@ -255,7 +257,7 @@ def create_config() -> Config:
             choices = random.sample(sorted(perm), random_count)
         choices = [{slots[i]: n for i, n in enumerate(c)} for c in choices]
         arrangements += [(f'random{i}', ColorAlignment('custom', r)) for i, r in enumerate(choices)]
-        asciis = [[*ca.recolor_ascii(asc, _prs).split('\n'), k.center(asc_width)] for k, ca in arrangements]
+        asciis = [[*ca.recolor_ascii_art(art, _prs).split('\n'), k.center(asc_width)] for k, ca in arrangements]
 
         while asciis:
             current = asciis[:ascii_per_row]
@@ -385,7 +387,7 @@ def run():
         GLOBAL_CFG.debug = True
 
     if args.test_print:
-        print(get_distro_ascii())
+        print(get_distro_ascii_art().ascii)
         return
 
     # Check if user provided alternative config path
@@ -446,8 +448,11 @@ def run():
 
     # Run
     try:
-        asc = get_distro_ascii() if not args.ascii_file else Path(args.ascii_file).read_text("utf-8")
-        asc = config.color_align.recolor_ascii(asc, preset)
+        if not args.ascii_file:
+            art = get_distro_ascii_art()
+        else:
+            art = AsciiArt.from_ascii_only(Path(args.ascii_file).read_text("utf-8"))
+        asc = config.color_align.recolor_ascii_art(art, preset)
         neofetch_util.run(asc, config.backend, config.args or '')
     except Exception as e:
         print(f'Error: {e}')
