@@ -156,7 +156,8 @@ class ColorAlignment:
             preset = preset.unique_colors()
 
             # Apply colors
-            color_map = {ai: preset.colors[pi].to_ansi() for ai, pi in self.custom_colors.items()}
+            full_custom_colors = ascii_art.extrapolate_missing_custom_colors(self.custom_colors)
+            color_map = {ai: preset.colors[pi].to_ansi() for ai, pi in full_custom_colors.items()}
             for ascii_i, c in color_map.items():
                 asc = asc.replace(f'${{c{ascii_i}}}', c)
 
