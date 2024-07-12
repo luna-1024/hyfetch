@@ -2,25 +2,25 @@
 
 from . import AsciiArt
 
-amazon = AsciiArt(match=r'''"Amazon"*''', color='3 7', ascii=r"""
+amazon = AsciiArt(match=r'''"Amazon"*''', color='3 3 3', ascii=r"""
 ${c1}             `-/oydNNdyo:.`
-      `.:+shmMMMMMMMMMMMMMMmhs+:.`
-    -+hNNMMMMMMMMMMMMMMMMMMMMMMNNho-
-.``      -/+shmNNMMMMMMNNmhs+/-      ``.
-dNmhs+:.       `.:/oo/:.`       .:+shmNd
-dMMMMMMMNdhs+:..        ..:+shdNMMMMMMMd
-dMMMMMMMMMMMMMMNds    odNMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-.:+ydNMMMMMMMMMMMh    yMMMMMMMMMMMNdy+:.
-     `.:+shNMMMMMh    yMMMMMNhs+:``
-            `-+shy    shs+:`
+${c1}      `.:+shmMMMMMMMMMMMMMMmhs+:.`
+${c1}    -+hNNMMMMMMMMMMMMMMMMMMMMMMNNho-
+${c2}.``      ${c1}-/+shmNNMMMMMMNNmhs+/-      ${c3}``.
+${c2}dNmhs+:.       ${c1}`.:/oo/:.`       ${c3}.:+shmNd
+${c2}dMMMMMMMNdhs+:..        ${c3}..:+shdNMMMMMMMd
+${c2}dMMMMMMMMMMMMMMNds    ${c3}odNMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}.:+ydNMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMNdy+:.
+${c2}     `.:+shNMMMMMh    ${c3}yMMMMMNhs+:``
+${c2}            `-+shy    ${c3}shs+:`
 """)
     

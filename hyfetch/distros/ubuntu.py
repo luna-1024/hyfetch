@@ -2,27 +2,27 @@
 
 from . import AsciiArt
 
-ubuntu = AsciiArt(match=r'''"Ubuntu"*''', color='1', ascii=r"""
-${c1}                             ....
-              .',:clooo:  .:looooo:.
-           .;looooooooc  .oooooooooo'
-        .;looooool:,''.  :ooooooooooc
-       ;looool;.         'oooooooooo,
-      ;clool'             .cooooooc.  ,,
-         ...                ......  .:oo,
-  .;clol:,.                        .loooo'
- :ooooooooo,                        'ooool
-'ooooooooooo.                        loooo.
-'ooooooooool                         coooo.
- ,loooooooc.                        .loooo.
-   .,;;;'.                          ;ooooc
-       ...                         ,ooool.
-    .cooooc.              ..',,'.  .cooo.
-      ;ooooo:.           ;oooooooc.  :l.
-       .coooooc,..      coooooooooo.
-         .:ooooooolc:. .ooooooooooo'
-           .':loooooo;  ,oooooooooc
-               ..';::c'  .;loooo:'
-                             .
+ubuntu = AsciiArt(match=r'''"Ubuntu"*''', color='1 1 1 1 1 1', ascii=r"""
+${c1}                         ${c2}    ....
+${c1}              .',:clooo: ${c2} .:looooo:.
+${c1}           .;looooooooc  ${c2}.oooooooooo'
+${c1}        .;looooool:,''.  ${c2}:ooooooooooc
+${c1}       ;looool;.         ${c2}'oooooooooo,
+${c1}      ;clool'            ${c2} .cooooooc.  ${c3},,
+${c1}         ...             ${c2}   ......  ${c3}.:oo,
+${c6}  .;clol:,.                        ${c3}.loooo'
+${c6} :ooooooooo,                       ${c3} 'ooool
+${c6}'ooooooooooo.                      ${c3}  loooo.
+${c6}'ooooooooool                       ${c3}  coooo.
+${c6} ,loooooooc.                       ${c3} .loooo.
+${c6}   .,;;;'.                         ${c3} ;ooooc
+${c5}       ...                         ${c3},ooool.
+${c5}    .cooooc.           ${c4}   ..',,'.  ${c3}.cooo.
+${c5}      ;ooooo:.         ${c4}  ;oooooooc.  ${c3}:l.
+${c5}       .coooooc,..     ${c4} coooooooooo.
+${c5}         .:ooooooolc:. ${c4}.ooooooooooo'
+${c5}           .':loooooo; ${c4} ,oooooooooc
+${c5}               ..';::c'${c4}  .;loooo:'
+                            ${c4} .
 """)
     

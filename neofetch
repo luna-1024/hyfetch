@@ -7259,27 +7259,27 @@ ${c1}                      %,
 EOF
         ;;
         "Amazon"*)
-            set_colors 3 7
+            set_colors 3 3 3
             read -rd '' ascii_data <<'EOF'
 ${c1}             `-/oydNNdyo:.`
-      `.:+shmMMMMMMMMMMMMMMmhs+:.`
-    -+hNNMMMMMMMMMMMMMMMMMMMMMMNNho-
-.``      -/+shmNNMMMMMMNNmhs+/-      ``.
-dNmhs+:.       `.:/oo/:.`       .:+shmNd
-dMMMMMMMNdhs+:..        ..:+shdNMMMMMMMd
-dMMMMMMMMMMMMMMNds    odNMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-dMMMMMMMMMMMMMMMMh    yMMMMMMMMMMMMMMMMd
-.:+ydNMMMMMMMMMMMh    yMMMMMMMMMMMNdy+:.
-     `.:+shNMMMMMh    yMMMMMNhs+:``
-            `-+shy    shs+:`
+${c1}      `.:+shmMMMMMMMMMMMMMMmhs+:.`
+${c1}    -+hNNMMMMMMMMMMMMMMMMMMMMMMNNho-
+${c2}.``      ${c1}-/+shmNNMMMMMMNNmhs+/-      ${c3}``.
+${c2}dNmhs+:.       ${c1}`.:/oo/:.`       ${c3}.:+shmNd
+${c2}dMMMMMMMNdhs+:..        ${c3}..:+shdNMMMMMMMd
+${c2}dMMMMMMMMMMMMMMNds    ${c3}odNMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}dMMMMMMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMMMMMMd
+${c2}.:+ydNMMMMMMMMMMMh    ${c3}yMMMMMMMMMMMNdy+:.
+${c2}     `.:+shNMMMMMh    ${c3}yMMMMMNhs+:``
+${c2}            `-+shy    ${c3}shs+:`
 EOF
         ;;
 
@@ -10314,29 +10314,29 @@ EOF
         ;;
 
         "GNOME"*)
-            set_colors 4
+            set_colors 4 4 4 4 4
             read -rd '' ascii_data <<'EOF'
-${c1}                               ,@@@@@@@@,
-                 @@@@@@      @@@@@@@@@@@@
-        ,@@.    @@@@@@@    *@@@@@@@@@@@@
-       @@@@@%   @@@@@@(    @@@@@@@@@@@&
-       @@@@@@    @@@@*     @@@@@@@@@#
-@@@@*   @@@@,              *@@@@@%
-@@@@@.
- @@@@#         @@@@@@@@@@@@@@@@
-         ,@@@@@@@@@@@@@@@@@@@@@@@,
-      ,@@@@@@@@@@@@@@@@@@@@@@@@@@&
-    .@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    @@@@@@@@@@@@@@@@@@@@@@@@@@@
-   @@@@@@@@@@@@@@@@@@@@@@@@(
-   @@@@@@@@@@@@@@@@@@@@%
-    @@@@@@@@@@@@@@@@
-     @@@@@@@@@@@@*        @@@@@@@@/
-      &@@@@@@@@@@        @@@@@@@@@*
-        @@@@@@@@@@@,    @@@@@@@@@*
-          ,@@@@@@@@@@@@@@@@@@@@&
-              &@@@@@@@@@@@@@@
-                     ...
+                           ${c4}    ,@@@@@@@@,
+                ${c3} @@@@@@    ${c4}  @@@@@@@@@@@@
+       ${c2} ,@@.    ${c3}@@@@@@@    ${c4}*@@@@@@@@@@@@
+       ${c2}@@@@@%   ${c3}@@@@@@(    ${c4}@@@@@@@@@@@&
+       ${c2}@@@@@@   ${c3} @@@@*     ${c4}@@@@@@@@@#
+${c1}@@@@*  ${c2} @@@@,              ${c4}*@@@@@%
+${c1}@@@@@.
+${c1} @@@@#         ${c5}@@@@@@@@@@@@@@@@
+${c5}         ,@@@@@@@@@@@@@@@@@@@@@@@,
+${c5}      ,@@@@@@@@@@@@@@@@@@@@@@@@@@&
+${c5}    .@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+${c5}    @@@@@@@@@@@@@@@@@@@@@@@@@@@
+${c5}   @@@@@@@@@@@@@@@@@@@@@@@@(
+${c5}   @@@@@@@@@@@@@@@@@@@@%
+${c5}    @@@@@@@@@@@@@@@@
+${c5}     @@@@@@@@@@@@*        @@@@@@@@/
+${c5}      &@@@@@@@@@@        @@@@@@@@@*
+${c5}        @@@@@@@@@@@,    @@@@@@@@@*
+${c5}          ,@@@@@@@@@@@@@@@@@@@@&
+${c5}              &@@@@@@@@@@@@@@
+${c5}                     ...
 EOF
         ;;
 
@@ -11411,22 +11411,22 @@ EOF
         ;;
 
         "Manjaro"*)
-            set_colors 2 7
+            set_colors 2 2 2
             read -rd '' ascii_data <<'EOF'
-${c1}██████████████████  ████████
-██████████████████  ████████
-██████████████████  ████████
-██████████████████  ████████
-████████            ████████
-████████  ████████  ████████
-████████  ████████  ████████
-████████  ████████  ████████
-████████  ████████  ████████
-████████  ████████  ████████
-████████  ████████  ████████
-████████  ████████  ████████
-████████  ████████  ████████
-████████  ████████  ████████
+${c1}██████████████████  ${c3}████████
+${c1}██████████████████  ${c3}████████
+${c1}██████████████████  ${c3}████████
+${c1}██████████████████  ${c3}████████
+${c1}████████            ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
+${c1}████████  ${c2}████████  ${c3}████████
 EOF
         ;;
 
@@ -11956,28 +11956,28 @@ EOF
         ;;
 
         "NixOS"*)
-            set_colors 4 6
+            set_colors 4 6 4 6 4 6
             read -rd '' ascii_data <<'EOF'
 ${c1}          ▗▄▄▄       ${c2}▗▄▄▄▄    ▄▄▄▖
 ${c1}          ▜███▙       ${c2}▜███▙  ▟███▛
 ${c1}           ▜███▙       ${c2}▜███▙▟███▛
 ${c1}            ▜███▙       ${c2}▜██████▛
-${c1}     ▟█████████████████▙ ${c2}▜████▛     ${c1}▟▙
-${c1}    ▟███████████████████▙ ${c2}▜███▙    ${c1}▟██▙
-${c2}           ▄▄▄▄▖           ▜███▙  ${c1}▟███▛
-${c2}          ▟███▛             ▜██▛ ${c1}▟███▛
-${c2}         ▟███▛               ▜▛ ${c1}▟███▛
-${c2}▟███████████▛                  ${c1}▟██████████▙
-${c2}▜██████████▛                  ${c1}▟███████████▛
-${c2}      ▟███▛ ${c1}▟▙               ▟███▛
-${c2}     ▟███▛ ${c1}▟██▙             ▟███▛
-${c2}    ▟███▛  ${c1}▜███▙           ▝▀▀▀▀
-${c2}    ▜██▛    ${c1}▜███▙ ${c2}▜██████████████████▛
-${c2}     ▜▛     ${c1}▟████▙ ${c2}▜████████████████▛
-${c1}           ▟██████▙       ${c2}▜███▙
-${c1}          ▟███▛▜███▙       ${c2}▜███▙
-${c1}         ▟███▛  ▜███▙       ${c2}▜███▙
-${c1}         ▝▀▀▀    ▀▀▀▀▘       ${c2}▀▀▀▘
+${c1}     ▟█████████████████▙ ${c2}▜████▛     ${c3}▟▙
+${c1}    ▟███████████████████▙ ${c2}▜███▙    ${c3}▟██▙
+${c6}           ▄▄▄▄▖           ${c2}▜███▙  ${c3}▟███▛
+${c6}          ▟███▛             ${c2}▜██▛ ${c3}▟███▛
+${c6}         ▟███▛               ${c2}▜▛ ${c3}▟███▛
+${c6}▟███████████▛                  ${c3}▟██████████▙
+${c6}▜██████████▛                  ${c3}▟███████████▛
+${c6}      ▟███▛ ${c5}▟▙               ${c3}▟███▛
+${c6}     ▟███▛ ${c5}▟██▙             ${c3}▟███▛
+${c6}    ▟███▛  ${c5}▜███▙           ${c3}▝▀▀▀▀
+${c6}    ▜██▛    ${c5}▜███▙ ${c4}▜██████████████████▛
+${c6}     ▜▛     ${c5}▟████▙ ${c4}▜████████████████▛
+${c5}           ▟██████▙       ${c4}▜███▙
+${c5}          ▟███▛▜███▙       ${c4}▜███▙
+${c5}         ▟███▛  ▜███▙       ${c4}▜███▙
+${c5}         ▝▀▀▀    ▀▀▀▀▘       ${c4}▀▀▀▘
 EOF
         ;;
 
@@ -12286,25 +12286,25 @@ EOF
         ;;
 
         "OpenStage"*)
-            set_colors 2
+            set_colors 2 2 2
             read -rd '' ascii_data <<'EOF'
 ${c1}                 /(/
-              .(((((((,
-             /(((((((((/
-           .(((((/,/(((((,
-          *(((((*   ,(((((/
-          (((((*      .*/((
-         *((((/  (//(/*
-         /((((*  ((((((((((,
-      .  /((((*  (((((((((((((.
-     ((. *((((/        ,((((((((
-   ,(((/  (((((/     **   ,((((((*
-  /(((((. .(((((/   //(((*  *(((((/
- .(((((,    ((/   .(((((/.   .(((((,
- /((((*        ,(((((((/      ,(((((
- /(((((((((((((((((((/.  /(((((((((/
- /(((((((((((((((((,   /(((((((((((/
-     */(((((//*.      */((/(/(/*
+${c1}              .(((((((,
+${c1}             /(((((((((/
+${c1}           .(((((/,/(((((,
+${c1}          *(((((*   ,(((((/
+${c1}          (((((*      .*/((
+${c1}         *((((/  ${c3}(//(/*
+${c1}         /((((*  ${c3}((((((((((,
+${c2}      .  ${c1}/((((*  ${c3}(((((((((((((.
+${c2}     ((. ${c1}*((((/        ${c3},((((((((
+${c2}   ,(((/  ${c1}(((((/     ${c2}**   ${c3},((((((*
+${c2}  /(((((. ${c1}.(((((/   ${c2}//(((*  ${c3}*(((((/
+${c2} .(((((,    ${c1}((/   ${c2}.(((((/.   ${c3}.(((((,
+${c2} /((((*        ,(((((((/      ${c3},(((((
+${c2} /(((((((((((((((((((/.  ${c3}/(((((((((/
+${c2} /(((((((((((((((((,   ${c3}/(((((((((((/
+${c2}     */(((((//*.      ${c3}*/((/(/(/*
 EOF
         ;;
 
@@ -14768,29 +14768,29 @@ EOF
         ;;
 
         "Ubuntu"*)
-            set_colors 1
+            set_colors 1 1 1 1 1 1
             read -rd '' ascii_data <<'EOF'
-${c1}                             ....
-              .',:clooo:  .:looooo:.
-           .;looooooooc  .oooooooooo'
-        .;looooool:,''.  :ooooooooooc
-       ;looool;.         'oooooooooo,
-      ;clool'             .cooooooc.  ,,
-         ...                ......  .:oo,
-  .;clol:,.                        .loooo'
- :ooooooooo,                        'ooool
-'ooooooooooo.                        loooo.
-'ooooooooool                         coooo.
- ,loooooooc.                        .loooo.
-   .,;;;'.                          ;ooooc
-       ...                         ,ooool.
-    .cooooc.              ..',,'.  .cooo.
-      ;ooooo:.           ;oooooooc.  :l.
-       .coooooc,..      coooooooooo.
-         .:ooooooolc:. .ooooooooooo'
-           .':loooooo;  ,oooooooooc
-               ..';::c'  .;loooo:'
-                             .
+${c1}                         ${c2}    ....
+${c1}              .',:clooo: ${c2} .:looooo:.
+${c1}           .;looooooooc  ${c2}.oooooooooo'
+${c1}        .;looooool:,''.  ${c2}:ooooooooooc
+${c1}       ;looool;.         ${c2}'oooooooooo,
+${c1}      ;clool'            ${c2} .cooooooc.  ${c3},,
+${c1}         ...             ${c2}   ......  ${c3}.:oo,
+${c6}  .;clol:,.                        ${c3}.loooo'
+${c6} :ooooooooo,                       ${c3} 'ooool
+${c6}'ooooooooooo.                      ${c3}  loooo.
+${c6}'ooooooooool                       ${c3}  coooo.
+${c6} ,loooooooc.                       ${c3} .loooo.
+${c6}   .,;;;'.                         ${c3} ;ooooc
+${c5}       ...                         ${c3},ooool.
+${c5}    .cooooc.           ${c4}   ..',,'.  ${c3}.cooo.
+${c5}      ;ooooo:.         ${c4}  ;oooooooc.  ${c3}:l.
+${c5}       .coooooc,..     ${c4} coooooooooo.
+${c5}         .:ooooooolc:. ${c4}.ooooooooooo'
+${c5}           .':loooooo; ${c4} ,oooooooooc
+${c5}               ..';::c'${c4}  .;loooo:'
+                            ${c4} .
 EOF
         ;;
 
@@ -15212,50 +15212,50 @@ EOF
 
         *"[Windows 11]"*|*"on Windows 11"*|\
         "Windows 11"* |"windows11")
-            set_colors 4 6
+            set_colors 4 4 4 4
             read -rd '' ascii_data <<'EOF'
-${c1}
-################  ################
-################  ################
-################  ################
-################  ################
-################  ################
-################  ################
-################  ################
 
-################  ################
-################  ################
-################  ################
-################  ################
-################  ################
-################  ################
-################  ################
+${c1}################  ${c2}################
+${c1}################  ${c2}################
+${c1}################  ${c2}################
+${c1}################  ${c2}################
+${c1}################  ${c2}################
+${c1}################  ${c2}################
+${c1}################  ${c2}################
+
+${c3}################  ${c4}################
+${c3}################  ${c4}################
+${c3}################  ${c4}################
+${c3}################  ${c4}################
+${c3}################  ${c4}################
+${c3}################  ${c4}################
+${c3}################  ${c4}################
 EOF
         ;;
 
         *"[Windows 10]"*|*"on Windows 10"*|"Windows 8"*|\
         "Windows 10"* |"windows10"|"windows8")
-            set_colors 6 7
+            set_colors 6 6 6 6
             read -rd '' ascii_data <<'EOF'
-${c1}                                ..,
-                    ....,,:;+ccllll
-      ...,,+:;  cllllllllllllllllll
-,cclllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
+${c2}                                ..,
+${c2}                    ....,,:;+ccllll
+${c1}      ...,,+:;  ${c2}cllllllllllllllllll
+${c1},cclllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
 
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-`'ccllllllllll  lllllllllllllllllll
-       `' \\*::  :ccllllllllllllllll
-                       ````''*::cll
-                                 ``
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}`'ccllllllllll  ${c4}lllllllllllllllllll
+${c3}       `' \\*:: ${c4} :ccllllllllllllllll
+${c4}                       ````''*::cll
+${c4}                                 ``
 EOF
         ;;
 

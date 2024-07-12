@@ -2,25 +2,25 @@
 
 from . import AsciiArt
 
-windows_10 = AsciiArt(match=r'''*"[Windows 10]"*|*"on Windows 10"*|"Windows 8"*|         "Windows 10"* |"windows10"|"windows8"''', color='6 7', ascii=r"""
-${c1}                                ..,
-                    ....,,:;+ccllll
-      ...,,+:;  cllllllllllllllllll
-,cclllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
+windows_10 = AsciiArt(match=r'''*"[Windows 10]"*|*"on Windows 10"*|"Windows 8"*|         "Windows 10"* |"windows10"|"windows8"''', color='6 6 6 6', ascii=r"""
+${c2}                                ..,
+${c2}                    ....,,:;+ccllll
+${c1}      ...,,+:;  ${c2}cllllllllllllllllll
+${c1},cclllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
+${c1}llllllllllllll  ${c2}lllllllllllllllllll
 
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-llllllllllllll  lllllllllllllllllll
-`'ccllllllllll  lllllllllllllllllll
-       `' \*::  :ccllllllllllllllll
-                       ````''*::cll
-                                 ``
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}llllllllllllll  ${c4}lllllllllllllllllll
+${c3}`'ccllllllllll  ${c4}lllllllllllllllllll
+${c3}       `' \*:: ${c4} :ccllllllllllllllll
+${c4}                       ````''*::cll
+${c4}                                 ``
 """)
     
