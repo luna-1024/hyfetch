@@ -1,6 +1,5 @@
 use std::borrow::Cow;
 use std::fmt::Write as _;
-use std::num::NonZeroU8;
 
 use aho_corasick::AhoCorasick;
 use anyhow::{Context as _, Result};
@@ -29,8 +28,8 @@ pub struct RawAsciiArt {
 #[derive(Clone, Debug)]
 pub struct NormalizedAsciiArt {
     pub lines: Vec<String>,
-    pub w: NonZeroU8,
-    pub h: NonZeroU8,
+    pub w: u8,
+    pub h: u8,
     pub fg: Vec<NeofetchAsciiIndexedColor>,
 }
 
@@ -38,8 +37,8 @@ pub struct NormalizedAsciiArt {
 #[derive(Clone, Debug)]
 pub struct RecoloredAsciiArt {
     pub lines: Vec<String>,
-    pub w: NonZeroU8,
-    pub h: NonZeroU8,
+    pub w: u8,
+    pub h: u8,
 }
 
 impl RawAsciiArt {
@@ -54,8 +53,8 @@ impl RawAsciiArt {
             .asc
             .lines()
             .map(|line| {
-                let line_w = ascii_size(line).map(|(w, _)| w.get()).unwrap_or_default();
-                let pad = " ".repeat(usize::from(w.get().checked_sub(line_w).unwrap()));
+                let (line_w, _) = ascii_size(line).unwrap();
+                let pad = " ".repeat(usize::from(w.checked_sub(line_w).unwrap()));
                 format!("{line}{pad}")
             })
             .collect();

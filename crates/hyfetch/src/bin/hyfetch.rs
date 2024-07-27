@@ -4,7 +4,7 @@ use std::fmt::Write as _;
 use std::fs::{self, File};
 use std::io::{self, IsTerminal as _, Read as _, Write as _};
 use std::iter::zip;
-use std::num::{NonZeroU16, NonZeroU8, NonZeroUsize};
+use std::num::NonZeroU8;
 use std::path::{Path, PathBuf};
 
 use aho_corasick::AhoCorasick;
@@ -266,14 +266,14 @@ fn create_config(
         let (Width(term_w), Height(term_h)) =
             terminal_size().context("failed to get terminal size")?;
         let (term_w_min, term_h_min) = (
-            NonZeroU16::from(asc.w)
-                .checked_mul(NonZeroU16::new(2).unwrap())
+            u16::from(asc.w)
+                .checked_mul(2)
                 .unwrap()
                 .checked_add(4)
                 .unwrap(),
-            NonZeroU16::new(30).unwrap(),
+            30,
         );
-        if term_w < term_w_min.get() || term_h < term_h_min.get() {
+        if term_w < term_w_min || term_h < term_h_min {
             printc(
                 format!(
                     "&cWarning: Your terminal is too small ({term_w} * {term_h}).\nPlease resize \
@@ -641,12 +641,7 @@ fn create_config(
             let (Width(term_w), _) = terminal_size().context("failed to get terminal size")?;
             let num_cols = cmp::max(
                 1,
-                term_w.div_euclid(
-                    NonZeroU16::from(test_ascii_width)
-                        .checked_add(2)
-                        .unwrap()
-                        .get(),
-                ),
+                term_w.div_euclid(u16::from(test_ascii_width).checked_add(2).unwrap()),
             );
             let num_cols: u8 = num_cols.try_into().expect("`num_cols` should fit in `u8`");
             const MIN: f32 = 0.15;
@@ -688,7 +683,7 @@ fn create_config(
                     asc.lines
                 })
                 .collect();
-            for i in 0..NonZeroUsize::from(test_ascii_height).get() {
+            for i in 0..usize::from(test_ascii_height) {
                 let mut line = Vec::new();
                 for lines in &row {
                     line.push(&*lines[i]);
@@ -767,7 +762,7 @@ fn create_config(
             terminal_size().context("failed to get terminal size")?;
         let ascii_per_row = cmp::max(
             1,
-            term_w.div_euclid(NonZeroU16::from(asc.w).checked_add(2).unwrap().get()),
+            term_w.div_euclid(u16::from(asc.w).checked_add(2).unwrap()),
         );
         let ascii_per_row: u8 = ascii_per_row
             .try_into()
@@ -776,7 +771,7 @@ fn create_config(
             1,
             term_h
                 .saturating_sub(8)
-                .div_euclid(NonZeroU16::from(asc.h).checked_add(1).unwrap().get()),
+                .div_euclid(u16::from(asc.h).checked_add(1).unwrap()),
         );
         let ascii_rows: u8 = ascii_rows
             .try_into()
@@ -864,10 +859,7 @@ fn create_config(
                     .to_recolored(ca, &color_profile, color_mode, theme)
                     .context("failed to recolor ascii")?
                     .lines;
-                v.push(format!(
-                    "{k:^asc_width$}",
-                    asc_width = NonZeroUsize::from(asc.w).get()
-                ));
+                v.push(format!("{k:^asc_width$}", asc_width = usize::from(asc.w)));
                 Ok(v)
             })
             .collect::<Result<_>>()?;
@@ -876,7 +868,7 @@ fn create_config(
             let row: Vec<Vec<String>> = row.collect();
 
             // Print by row
-            for i in 0..NonZeroUsize::from(asc.h).checked_add(1).unwrap().get() {
+            for i in 0..usize::from(asc.h).checked_add(1).unwrap() {
                 let mut line = Vec::new();
                 for lines in &row {
                     line.push(&*lines[i]);

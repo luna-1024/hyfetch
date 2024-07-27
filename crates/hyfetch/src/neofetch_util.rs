@@ -5,7 +5,6 @@ use std::fs;
 #[cfg(windows)]
 use std::io;
 use std::io::{self, Write as _};
-use std::num::{NonZeroU8, NonZeroUsize};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use std::sync::OnceLock;
@@ -332,7 +331,7 @@ pub fn run(asc: RecoloredAsciiArt, backend: Backend, args: Option<&Vec<String>>)
 }
 
 /// Gets distro ascii width and height, ignoring color code.
-pub fn ascii_size<S>(asc: S) -> Result<(NonZeroU8, NonZeroU8)>
+pub fn ascii_size<S>(asc: S) -> Result<(u8, u8)>
 where
     S: AsRef<str>,
 {
@@ -350,17 +349,15 @@ where
         .lines()
         .map(|line| line.graphemes(true).count())
         .max()
-        .expect("line iterator should not be empty");
-    let width: NonZeroUsize = width.try_into().context("`asc` should not be empty")?;
-    let width: NonZeroU8 = width.try_into().with_context(|| {
+        .unwrap_or(0);
+    let width: u8 = width.try_into().with_context(|| {
         format!(
             "`asc` should not have more than {limit} characters per line",
             limit = u8::MAX
         )
     })?;
     let height = asc.lines().count();
-    let height: NonZeroUsize = height.try_into().context("`asc` should not be empty")?;
-    let height: NonZeroU8 = height.try_into().with_context(|| {
+    let height: u8 = height.try_into().with_context(|| {
         format!(
             "`asc` should not have more than {limit} lines",
             limit = u8::MAX

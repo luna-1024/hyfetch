@@ -503,7 +503,7 @@ impl ColorProfile {
 
     /// Creates a new color profile, with the colors spread to the specified
     /// length.
-    pub fn with_length(&self, length: NonZeroU8) -> Result<Self> {
+    pub fn with_length(&self, length: u8) -> Result<Self> {
         let orig_len = self.colors.len();
         let orig_len: NonZeroUsize = orig_len.try_into().expect("`colors` should not be empty");
         let orig_len: NonZeroU8 = orig_len
@@ -516,11 +516,11 @@ impl ColorProfile {
         let center_i = usize::from(orig_len.get() / 2);
 
         // How many copies of each color should be displayed at least?
-        let repeats = length.get().div_euclid(orig_len.get());
+        let repeats = length.div_euclid(orig_len.get());
         let mut weights = vec![repeats; NonZeroUsize::from(orig_len).get()];
 
         // How many extra spaces left?
-        let mut extras = length.get().rem_euclid(orig_len.get());
+        let mut extras = length.rem_euclid(orig_len.get());
 
         // If there is an odd space left, extend the center by one space
         if extras % 2 == 1 {
@@ -567,8 +567,7 @@ impl ColorProfile {
 
         let ColorProfile { colors } = {
             let length = txt.len();
-            let length: NonZeroUsize = length.try_into().context("`txt` should not be empty")?;
-            let length: NonZeroU8 = length.try_into().with_context(|| {
+            let length: u8 = length.try_into().with_context(|| {
                 format!(
                     "`txt` should not have more than {limit} characters",
                     limit = u8::MAX

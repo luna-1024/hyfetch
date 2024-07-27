@@ -1,5 +1,5 @@
 use std::io::{self, Write as _};
-use std::num::{NonZeroU16, NonZeroU8, NonZeroUsize, Wrapping};
+use std::num::{NonZeroU16, NonZeroUsize, Wrapping};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::time::Duration;
@@ -34,12 +34,7 @@ const TEXT_ASCII_SMALL: &str = r"
 const NOTICE: &str = "Press enter to continue";
 
 pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
-    let (w, h) = {
-        let (Width(w), Height(h)) = terminal_size().context("failed to get terminal size")?;
-        let w: NonZeroU16 = w.try_into().context("terminal width should not be 0")?;
-        let h: NonZeroU16 = h.try_into().context("terminal height should not be 0")?;
-        (w, h)
-    };
+    let (Width(w), Height(h)) = terminal_size().context("failed to get terminal size")?;
 
     let text = &TEXT_ASCII[1..TEXT_ASCII.len().checked_sub(1).unwrap()];
     let (text_width, text_height) =
@@ -48,31 +43,25 @@ pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
         const TEXT_BORDER_WIDTH: u16 = 2;
         const NOTICE_BORDER_WIDTH: u16 = 1;
         const VERTICAL_MARGIN: u16 = 1;
-        let notice_w: NonZeroUsize = NOTICE
+        let notice_w: u8 = NOTICE
             .len()
             .try_into()
-            .expect("`NOTICE` should not be empty");
-        let notice_w: NonZeroU8 = notice_w
-            .try_into()
             .expect("`NOTICE` width should fit in `u8`");
-        let notice_h: NonZeroUsize = NOTICE
+        let notice_h: u8 = NOTICE
             .lines()
             .count()
             .try_into()
-            .expect("`NOTICE` should not be empty");
-        let notice_h: NonZeroU8 = notice_h
-            .try_into()
             .expect("`NOTICE` height should fit in `u8`");
         let term_w_min = cmp::max(
-            NonZeroU16::from(text_width)
+            u16::from(text_width)
                 .checked_add(TEXT_BORDER_WIDTH.checked_mul(2).unwrap())
                 .unwrap(),
-            NonZeroU16::from(notice_w)
+            u16::from(notice_w)
                 .checked_add(NOTICE_BORDER_WIDTH.checked_mul(2).unwrap())
                 .unwrap(),
         );
-        let term_h_min = NonZeroU16::from(text_height)
-            .checked_add(notice_h.get().into())
+        let term_h_min = u16::from(text_height)
+            .checked_add(notice_h.into())
             .unwrap()
             .checked_add(VERTICAL_MARGIN.checked_mul(2).unwrap())
             .unwrap();
@@ -83,15 +72,15 @@ pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
             let (text_width, text_height) =
                 ascii_size(text).expect("text ascii should have valid width and height");
             let term_w_min = cmp::max(
-                NonZeroU16::from(text_width)
+                u16::from(text_width)
                     .checked_add(TEXT_BORDER_WIDTH.checked_mul(2).unwrap())
                     .unwrap(),
-                NonZeroU16::from(notice_w)
+                u16::from(notice_w)
                     .checked_add(NOTICE_BORDER_WIDTH.checked_mul(2).unwrap())
                     .unwrap(),
             );
-            let term_h_min = NonZeroU16::from(text_height)
-                .checked_add(notice_h.get().into())
+            let term_h_min = u16::from(text_height)
+                .checked_add(notice_h.into())
                 .unwrap()
                 .checked_add(VERTICAL_MARGIN.checked_mul(2).unwrap())
                 .unwrap();
@@ -107,30 +96,22 @@ pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
 
     const BLOCKS: u8 = 9;
     let block_width: NonZeroU16 = w
-        .get()
         .div_euclid(u16::from(BLOCKS))
         .try_into()
         .with_context(|| format!("terminal width should be at least {BLOCKS}"))?;
 
     let text_start_y = h
-        .get()
         .div_euclid(2)
-        .checked_sub(u16::from(text_height.get() / 2))
+        .checked_sub(u16::from(text_height / 2))
         .unwrap();
-    let text_end_y = text_start_y
-        .checked_add(NonZeroU16::from(text_height).get())
-        .unwrap();
+    let text_end_y = text_start_y.checked_add(u16::from(text_height)).unwrap();
     let text_start_x = w
-        .get()
         .div_euclid(2)
-        .checked_sub(u16::from(text_width.get() / 2))
+        .checked_sub(u16::from(text_width / 2))
         .unwrap();
-    let text_end_x = text_start_x
-        .checked_add(NonZeroU16::from(text_width).get())
-        .unwrap();
+    let text_end_x = text_start_x.checked_add(u16::from(text_width)).unwrap();
 
     let notice_start_x = w
-        .get()
         .checked_sub(
             u8::try_from(NOTICE.len())
                 .expect("`NOTICE` length should fit in `u8`")
@@ -139,8 +120,8 @@ pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
         .unwrap()
         .checked_sub(1)
         .unwrap();
-    let notice_end_x = w.get().checked_sub(1).unwrap();
-    let notice_y = h.get().checked_sub(1).unwrap();
+    let notice_end_x = w.checked_sub(1).unwrap();
+    let notice_y = h.checked_sub(1).unwrap();
 
     // Add every preset to colors
     let colors: Vec<Srgb<u8>> = Preset::VARIANTS
@@ -157,7 +138,7 @@ pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
         let mut buf = String::new();
 
         // Loop over the height
-        for y in 0..h.get() {
+        for y in 0..h {
             // Print the starting color
             buf.push_str(
                 &colors[frame
@@ -169,7 +150,7 @@ pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
             buf.push_str(&fg.to_ansi_string(color_mode, ForegroundBackground::Foreground));
 
             // Loop over the width
-            for x in 0..w.get() {
+            for x in 0..w {
                 let idx = frame
                     .wrapping_add(x.into())
                     .wrapping_add(y.into())
@@ -246,7 +227,7 @@ pub fn start_animation(color_mode: AnsiMode) -> Result<()> {
             }
 
             // New line if it isn't the last line
-            if y != h.get().checked_sub(1).unwrap() {
+            if y != h.checked_sub(1).unwrap() {
                 buf.push_str(
                     &color("&r\n", color_mode)
                         .expect("line separator should not contain invalid color codes"),
