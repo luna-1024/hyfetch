@@ -132,7 +132,6 @@ fn main() -> Result<()> {
             asc: fs::read_to_string(&path)
                 .with_context(|| format!("failed to read ascii from {path:?}"))?,
             fg: Vec::new(),
-            bg: Vec::new(),
         }
     } else {
         get_distro_ascii(distro, backend).context("failed to get distro ascii")?
@@ -670,7 +669,6 @@ fn create_config(
                             ),
                         ),
                         fg: Vec::new(),
-                        bg: Vec::new(),
                     };
                     let asc = asc
                         .to_normalized()
